@@ -83,7 +83,7 @@ export default function BlogSection() {
     }
   }, [])
 
-  const swiperConfig = {
+  const swiperConfig: any = {
     effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
