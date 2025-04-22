@@ -1,3 +1,6 @@
+import { FaTwitter, FaGithub } from 'react-icons/fa'
+import { SiZenn, SiQiita } from 'react-icons/si'
+
 export const navItems = [
   { title: 'Home', url: '#hero' },
   { title: 'About', url: '#about' },
@@ -10,10 +13,10 @@ export const navItems = [
 export const aboutText = {
   title: 'About Me',
   content: `
-  I’m a university student in Japan, studying computer science.
+  I'm a university student in Japan, studying computer science.
   I spend my days working with friends on club activities and collaborating on app development projects.
-  I’m especially passionate about frontend development—I love creating interfaces that connect people.
-  Recently, I’ve also started exploring backend development, expanding my interest toward full-stack engineering.
+  I'm especially passionate about frontend development—I love creating interfaces that connect people.
+  Recently, I've also started exploring backend development, expanding my interest toward full-stack engineering.
   Step by step, I continue learning and growing on my journey as an engineer.`
   };
 
@@ -67,3 +70,30 @@ export const projects = [
     link: '#',
   },
 ];
+
+export const sns = [
+  {
+    id: 1,
+    name: 'X',
+    icon: 'twitter',
+    url: 'https://x.com/kasshii',
+  },
+  {
+    id: 2,
+    name: 'GitHub',
+    icon: 'github',
+    url: 'https://github.com/kasshii28',
+  },
+  {
+    id: 3,
+    name: 'Qiita',
+    icon: 'qiita',
+    url: 'https://qiita.com/kasshii28',
+  },
+  {
+    id: 4,
+    name: 'Zenn',
+    icon: 'zenn',
+    url: 'https://zenn.dev/kasshii18',
+  },
+]

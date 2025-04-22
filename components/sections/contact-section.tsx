@@ -5,8 +5,8 @@ import { cn } from '@/lib/utils'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Send, Check, Github, Linkedin, Twitter } from 'lucide-react'
-
+import { Send, Check } from 'lucide-react'
+import { SnsLinks } from '@/components/sns-links'
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -172,10 +172,10 @@ export default function ContactSection() {
               <div>
                 <h4 className="text-sm uppercase tracking-wider text-gray-400 mb-3">Email</h4>
                 <a 
-                  href="mailto:hello@example.com" 
+                  href="mailto:hk.kasshii@gmail.com" 
                   className="text-lg text-[#F2C1D1] hover:underline focus:outline-none focus:ring-2 focus:ring-[#F2C1D1]/50 inline-block"
                 >
-                  hello@example.com
+                  hk.kasshii@gmail.com
                 </a>
               </div>
               
@@ -187,33 +187,7 @@ export default function ContactSection() {
               <div>
                 <h4 className="text-sm uppercase tracking-wider text-gray-400 mb-4">Social</h4>
                 <div className="flex space-x-4">
-                  <a 
-                    href="#" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#C9B6E4] hover:text-[#0A1128] transition-all"
-                    aria-label="Github"
-                  >
-                    <Github size={20} />
-                  </a>
-                  <a 
-                    href="#" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#C9B6E4] hover:text-[#0A1128] transition-all"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin size={20} />
-                  </a>
-                  <a 
-                    href="#" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#C9B6E4] hover:text-[#0A1128] transition-all"
-                    aria-label="Twitter"
-                  >
-                    <Twitter size={20} />
-                  </a>
+                  <SnsLinks />
                 </div>
               </div>
             </div>
@@ -221,7 +195,7 @@ export default function ContactSection() {
         </div>
         
         <footer className="mt-24 text-center text-sm text-gray-400">
-          <p>© {new Date().getFullYear()} Digital Dreamer. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Kasshii </p>
         </footer>
       </div>
     </section>
