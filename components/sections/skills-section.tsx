@@ -92,9 +92,7 @@ export default function SkillsSection() {
                   style={{ width: `${selectedSkill.level}%` }}
                 ></div>
               </div>
-              
-              <p className="text-gray-300 mb-6">{selectedSkill.description}</p>
-              
+                            
               <div className="inline-block bg-[#C9B6E4]/20 px-3 py-1 rounded-full text-sm text-[#C9B6E4]">
                 {selectedSkill.group}
               </div>

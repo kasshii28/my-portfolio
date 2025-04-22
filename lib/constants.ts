@@ -18,16 +18,15 @@ export const aboutText = {
   };
 
 export const skills = [
-  { id: 1, name: 'React', level: 60, description: 'Building interactive UIs with modern React patterns and hooks', group: 'frontend' },
-  { id: 2, name: 'Next.js', level: 35, description: 'Creating performant, SEO-friendly applications with server-side rendering', group: 'frontend' },
-  { id: 3, name: 'TypeScript', level: 65, description: 'Writing type-safe code for more reliable applications', group: 'languages' },
-  { id: 4, name: 'Tailwind CSS', level: 60, description: 'Crafting beautiful, responsive designs with utility-first CSS', group: 'styling' },
-  { id: 5, name: 'JavaScript', level: 80, description: 'Developing dynamic web experiences with modern JavaScript', group: 'languages' },
-  { id: 6, name: 'Python', level: 75, description: 'Building backend services and APIs with JavaScript', group: 'backend' },
-  { id: 7, name: 'UI/UX Design', level: 40, description: 'Creating intuitive, accessible, and beautiful user experiences', group: 'design' },
-  { id: 8, name: 'CSS/SCSS', level: 90, description: 'Styling web applications with modern CSS techniques', group: 'styling' },
-  { id: 9, name: 'GraphQL', level: 70, description: 'Working with efficient data queries and mutations', group: 'backend' },
-  { id: 10, name: 'Animation', level: 85, description: 'Bringing interfaces to life with thoughtful motion design', group: 'design' },
+  { id: 1, name: 'React', level: 60, group: 'frontend' },
+  { id: 2, name: 'Next.js', level: 35, group: 'frontend' },
+  { id: 3, name: 'TypeScript', level: 70, group: 'languages' },
+  { id: 4, name: 'Tailwind CSS', level: 60, group: 'styling' },
+  { id: 5, name: 'JavaScript', level: 80, group: 'languages' },
+  { id: 6, name: 'Python', level: 75, group: 'languages' },
+  { id: 7, name: 'UI/UX Design', level: 40, group: 'design' },
+  { id: 8, name: 'Docker', level: 40, group: 'tools' },
+  { id: 9, name: 'Go lang', level: 30, group: 'languages' },
 ];
 
 export const projects = [
