@@ -121,7 +121,7 @@ export default function BlogSection() {
           )}
         >
           <span className="relative inline-block">
-            Latest Thoughts
+            Blogs Qiita Zenn
             <span className="absolute -bottom-2 left-0 w-1/3 h-0.5 bg-[#B4CDED]"></span>
           </span>
         </h2>
@@ -132,19 +132,19 @@ export default function BlogSection() {
             "opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-out"
           )}
         >
-          <Tabs defaultValue="technical" className="w-full">
-            <TabsList className="w-full max-w-md mx-auto mb-12 bg-white/5">
+          <Tabs defaultValue="qiita" className="w-full">
+            <TabsList className="flex justify-center items-centerw-full max-w-md mx-auto mb-12 bg-white/5">
               <TabsTrigger 
-                value="technical"
+                value="qiita"
                 className="w-1/2 data-[state=active]:bg-[#C9B6E4] data-[state=active]:text-[#0A1128]"
               >
-                Technical
+                Qiita
               </TabsTrigger>
               <TabsTrigger 
-                value="creative"
+                value="zenn"
                 className="w-1/2 data-[state=active]:bg-[#F2C1D1] data-[state=active]:text-[#0A1128]"
               >
-                Creative
+                Zenn
               </TabsTrigger>
             </TabsList>
 
