@@ -7,12 +7,35 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Send, Check } from 'lucide-react'
 import { SnsLinks } from '@/components/sns-links'
+import emailjs from '@emailjs/browser'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const formSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Please enter a valid email address'),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
+})
+
+type FormData = z.infer<typeof formSchema>
+
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const [sendedMessage, setSendedMessage] = useState('')
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema)
+  })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,24 +58,25 @@ export default function ContactSection() {
     }
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const onSubmit = async (data: FormData) => {
+    if (!formRef.current) return
+
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      setSendedMessage('Your message has been sent! Please wait for our reply.')
       setIsSubmitted(true)
-      
-      if (formRef.current) {
-        formRef.current.reset()
-      }
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 5000)
-    }, 1500)
+      reset()
+    } catch (err) {
+      setSendedMessage('Failed to send message. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -87,26 +111,23 @@ export default function ContactSection() {
           )}
         >
           <div>
-            <h3 className="text-2xl font-space font-medium mb-6 text-[#B4CDED]">
-              Send a Message
-            </h3>
-            
-            <p className="text-gray-300 mb-8">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-            </p>
-            
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-3">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300">
                   Your Name
                 </label>
                 <Input
                   id="name"
-                  type="text"
-                  required
-                  className="bg-white/5 border-white/10 focus:border-[#C9B6E4]/70 focus:ring-[#C9B6E4]/20"
+                  {...register('name')}
+                  className={cn(
+                    "bg-white/5 border-white/10 focus:border-[#C9B6E4]/70 focus:ring-[#C9B6E4]/20",
+                    errors.name && "border-red-500"
+                  )}
                   placeholder="Jane Doe"
                 />
+                {errors.name && (
+                  <p className="text-sm text-red-500">{errors.name.message}</p>
+                )}
               </div>
               
               <div className="space-y-3">
@@ -116,10 +137,16 @@ export default function ContactSection() {
                 <Input
                   id="email"
                   type="email"
-                  required
-                  className="bg-white/5 border-white/10 focus:border-[#C9B6E4]/70 focus:ring-[#C9B6E4]/20"
+                  {...register('email')}
+                  className={cn(
+                    "bg-white/5 border-white/10 focus:border-[#C9B6E4]/70 focus:ring-[#C9B6E4]/20",
+                    errors.email && "border-red-500"
+                  )}
                   placeholder="hello@example.com"
                 />
+                {errors.email && (
+                  <p className="text-sm text-red-500">{errors.email.message}</p>
+                )}
               </div>
               
               <div className="space-y-3">
@@ -128,11 +155,26 @@ export default function ContactSection() {
                 </label>
                 <Textarea
                   id="message"
-                  required
-                  className="bg-white/5 border-white/10 focus:border-[#C9B6E4]/70 focus:ring-[#C9B6E4]/20 min-h-[150px]"
+                  {...register('message')}
+                  className={cn(
+                    "bg-white/5 border-white/10 focus:border-[#C9B6E4]/70 focus:ring-[#C9B6E4]/20 min-h-[150px]",
+                    errors.message && "border-red-500"
+                  )}
                   placeholder="Tell me about your project or inquiry..."
                 />
+                {errors.message && (
+                  <p className="text-sm text-red-500">{errors.message.message}</p>
+                )}
               </div>
+              
+              {sendedMessage && (
+                <p className={cn(
+                  "text-sm",
+                  isSubmitted ? "text-green-500" : "text-red-500"
+                )}>
+                  {sendedMessage}
+                </p>
+              )}
               
               <Button
                 type="submit"
@@ -160,10 +202,6 @@ export default function ContactSection() {
           </div>
           
           <div className="lg:pl-12 lg:border-l lg:border-white/10">
-            <h3 className="text-2xl font-space font-medium mb-6 text-[#B4CDED]">
-              Other Ways to Reach Me
-            </h3>
-            
             <p className="text-gray-300 mb-8">
               Feel free to connect through social media or drop me an email directly.
             </p>
