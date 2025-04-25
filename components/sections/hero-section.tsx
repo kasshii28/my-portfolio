@@ -42,7 +42,7 @@ export default function HeroSection() {
           ref={titleRef}
           className="text-4xl md:text-6xl lg:text-7xl font-space font-bold mb-6 opacity-0 translate-y-8 transition-all duration-1000 ease-out"
         >
-          My Portfolio <span className="text-[#F2C1D1]">Site</span>
+          Thanks Welcome to <span className="text-[#F2C1D1]">Portfolio!</span>
         </h1>
         
         <p 
