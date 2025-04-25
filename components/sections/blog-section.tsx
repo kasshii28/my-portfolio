@@ -9,58 +9,24 @@ import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-
-const technicalBlogs = [
-  {
-    id: 1,
-    title: "Understanding React Server Components",
-    date: "2024-03-15",
-    excerpt: "A deep dive into the future of React with Server Components...",
-    image: "https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg"
-  },
-  {
-    id: 2,
-    title: "The Power of TypeScript",
-    date: "2024-03-10",
-    excerpt: "Why TypeScript is becoming the standard for modern web development...",
-    image: "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg"
-  },
-  {
-    id: 3,
-    title: "Next.js 14 Features",
-    date: "2024-03-05",
-    excerpt: "Exploring the latest features in Next.js 14...",
-    image: "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg"
-  }
-]
-
-const creativeBlogs = [
-  {
-    id: 1,
-    title: "Design Systems in Practice",
-    date: "2024-03-12",
-    excerpt: "Creating cohesive design systems for modern applications...",
-    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg"
-  },
-  {
-    id: 2,
-    title: "The Art of Animation",
-    date: "2024-03-08",
-    excerpt: "Crafting meaningful animations for better user experiences...",
-    image: "https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg"
-  },
-  {
-    id: 3,
-    title: "Color Theory in Web Design",
-    date: "2024-03-03",
-    excerpt: "Understanding and applying color theory in web applications...",
-    image: "https://images.pexels.com/photos/1037999/pexels-photo-1037999.jpeg"
-  }
-]
+import { FormatDate } from '@/lib/utils'
 
 export default function BlogSection() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const [dataQiita, setDataQiita] = useState([])
+  const [dataZenn, setDataZenn] = useState([])
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const resQiita = await fetch('/api/getQiita')
+      const resZenn = await fetch('/api/getZenn')
+      const dataQiita = await resQiita.json()
+      const dataZenn = await resZenn.json()
+      setDataQiita(dataQiita)
+      setDataZenn(dataZenn.articles)
+    }
+    fetchBlogs()
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -111,7 +77,7 @@ export default function BlogSection() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F2C1D1]/30 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9B6E4]/30 to-transparent"></div>
       </div>
-
+  
       <div className="container mx-auto max-w-6xl relative z-10">
         <h2 
           ref={titleRef}
@@ -148,47 +114,45 @@ export default function BlogSection() {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="technical">
+            <TabsContent value="qiita">
               <Swiper {...swiperConfig}>
-                {technicalBlogs.map((blog) => (
+                {dataQiita.map((blog: any) => (
                   <SwiperSlide key={blog.id} className="max-w-sm">
-                    <div className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-[#C9B6E4]/50 transition-all">
-                      <div className="aspect-video relative overflow-hidden">
-                        <img 
-                          src={blog.image} 
-                          alt={blog.title}
-                          className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
-                        />
+                    <a href={blog.url}>
+                      <div className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-[#C9B6E4]/50 transition-all">
+                        <div className="aspect-video relative overflow-hidden">
+                          <img 
+                            src={blog.user.profile_image_url} 
+                            className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-6">
+                          <p className="text-sm text-[#C9B6E4] mb-2">{FormatDate(blog.created_at)}</p>
+                          <h3 className="text-xl font-space font-semibold mb-3">{blog.title}</h3>
+                        </div>
                       </div>
-                      <div className="p-6">
-                        <p className="text-sm text-[#C9B6E4] mb-2">{blog.date}</p>
-                        <h3 className="text-xl font-space font-semibold mb-3">{blog.title}</h3>
-                        <p className="text-gray-400">{blog.excerpt}</p>
-                      </div>
-                    </div>
+                    </a>
                   </SwiperSlide>
                 ))}
               </Swiper>
             </TabsContent>
 
-            <TabsContent value="creative">
+            <TabsContent value="zenn">
               <Swiper {...swiperConfig}>
-                {creativeBlogs.map((blog) => (
+                {dataZenn.map((blog: any) => (
                   <SwiperSlide key={blog.id} className="max-w-sm">
-                    <div className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-[#F2C1D1]/50 transition-all">
-                      <div className="aspect-video relative overflow-hidden">
-                        <img 
-                          src={blog.image} 
-                          alt={blog.title}
-                          className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
-                        />
+                    <a href={blog.url}>
+                      <div className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-[#F2C1D1]/50 transition-all">
+                        <div className="aspect-video relative overflow-hidden">
+                          <p className="text-[120px] text-center text-[#F2C1D1] ">{blog.emoji}</p>
+                        </div>
+                        <div className="p-6">
+                          <p className="text-sm text-[#F2C1D1] mb-2">{FormatDate(blog.published_at)}</p>
+                          <h3 className="text-xl font-space font-semibold mb-3">{blog.title}</h3>
+                          <p className="text-gray-400">{blog.excerpt}</p>
+                        </div>
                       </div>
-                      <div className="p-6">
-                        <p className="text-sm text-[#F2C1D1] mb-2">{blog.date}</p>
-                        <h3 className="text-xl font-space font-semibold mb-3">{blog.title}</h3>
-                        <p className="text-gray-400">{blog.excerpt}</p>
-                      </div>
-                    </div>
+                    </a>
                   </SwiperSlide>
                 ))}
               </Swiper>
