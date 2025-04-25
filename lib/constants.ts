@@ -13,11 +13,11 @@ export const navItems = [
 export const aboutText = {
   title: 'About Me',
   content: `
-  I'm a university student in Japan, studying computer science.
-  I spend my days working with friends on club activities and collaborating on app development projects.
-  I'm especially passionate about frontend development—I love creating interfaces that connect people.
-  Recently, I've also started exploring backend development, expanding my interest toward full-stack engineering.
-  Step by step, I continue learning and growing on my journey as an engineer.`
+  私は日本の大学でコンピュータサイエンスを学んでいる学生です。
+日々、部活動の仲間と一緒に活動したり、アプリ開発プロジェクトに取り組んだりしながら過ごしています。
+中でも特に力を入れているのがフロントエンド開発です。人と人とをつなぐインターフェースを作ることが大好きです。
+最近ではバックエンドにも興味が広がり、フルスタックエンジニアを目指して学びを深めています。
+一歩ずつ、エンジニアとして成長し続ける毎日です。`
   };
 
 export const skills = [
@@ -35,40 +35,39 @@ export const skills = [
 export const projects = [
   {
     id: 1,
-    title: 'Nebula',
-    subtitle: 'A Journey Through Space',
-    description: 'An interactive web experience that takes users on a journey through our solar system, with beautiful animations and educational content.',
-    technologies: ['React', 'Three.js', 'GSAP', 'CSS'],
-    imageUrl: 'https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    link: '#',
+    title: 'さよならは夕闇の中で',
+    description: 'Unityの2Dゲームです。サークルで作成しました',
+    technologies: ['Unity', 'C#'],
+    imageUrl: '/game.jpg',
   },
   {
     id: 2,
-    title: 'Dreamscape',
-    subtitle: 'Digital Art Gallery',
-    description: 'A virtual gallery showcasing digital artwork with a dreamy aesthetic, featuring works from artists around the world.',
-    technologies: ['Next.js', 'Framer Motion', 'Supabase', 'Tailwind CSS'],
-    imageUrl: 'https://images.pexels.com/photos/3679524/pexels-photo-3679524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    link: '#',
+    title: '勉強会',
+    description: '大学内で開催した勉強会です',
+    technologies: ['C', 'Python', 'Js'],
+    imageUrl: '/C.jpg',
   },
   {
     id: 3,
-    title: 'Whisper',
-    subtitle: 'Mindfulness Application',
-    description: 'A mobile-first web application designed to help users practice mindfulness and meditation with calming visuals and sounds.',
-    technologies: ['React Native', 'Expo', 'Firebase', 'Styled Components'],
-    imageUrl: 'https://images.pexels.com/photos/1834407/pexels-photo-1834407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    link: '#',
+    title: 'Qiita,Zennの記事をDiscordで通知するbot',
+    description: 'Qiita, Zennのそれぞれでその日の人気記事Top3(いいね数基準)を通知するBotです',
+    technologies: ['GAS', 'Discord WebHook'],
+    imageUrl: '/discord.png',
   },
   {
     id: 4,
-    title: 'Lullaby',
-    subtitle: 'Music Streaming Platform',
-    description: 'A specialized music streaming service focused on ambient and calming music for focus, sleep, and relaxation.',
-    technologies: ['Vue.js', 'Node.js', 'MongoDB', 'Web Audio API'],
-    imageUrl: 'https://images.pexels.com/photos/4792733/pexels-photo-4792733.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    link: '#',
+    title: '大学の教室予約アプリ',
+    description: '大学内の空き教室をサークルなどの団体が自由に予約できるアプリです。',
+    technologies: ['Python', 'Flask', 'SQlite', 'JS', 'OAuth2'],
+    imageUrl: '/yoyaku.png',
   },
+  // {
+  //   id: 5,
+  //   title: 'サークル用会計アプリ',
+  //   description: 'サークル内で使用するための会計アプリです。サークルメンバーが現在までの収支などを確認したり、会計の管理ができます。',
+  //   technologies: ['React', 'TanstackRouter', 'Python', 'Flask', 'PostgresSQL'],
+  //   imageUrl: '/portfolio.png',
+  // }
 ];
 
 export const sns = [
