@@ -141,7 +141,7 @@ export default function BlogSection() {
               <Swiper {...swiperConfig}>
                 {dataZenn.map((blog: any) => (
                   <SwiperSlide key={blog.id} className="max-w-sm">
-                    <a href={blog.url}>
+                    <a href={`https://zenn.dev/${blog.path}`}>
                       <div className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-[#F2C1D1]/50 transition-all">
                         <div className="aspect-video relative overflow-hidden">
                           <p className="text-[120px] text-center text-[#F2C1D1] ">{blog.emoji}</p>
